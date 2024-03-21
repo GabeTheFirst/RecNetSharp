@@ -10,7 +10,7 @@ To use it, you must first be ```using RecNetSharp;```, then create an instance o
 example:
 ```cs
 
-    RecNetClient Client = new RecNetClient();
+RecNetClient Client = new RecNetClient();
 
 ```
 
@@ -19,7 +19,7 @@ before you can do much though, most of RecRoom's public APIs require a Key to be
 for example:
 ```cs
 
-    RecNetClient Client = new RecNetClient(Key);
+RecNetClient Client = new RecNetClient(Key);
 
 ```
 if you provide a key, your requests will be authorized with that key.
