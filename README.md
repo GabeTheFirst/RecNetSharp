@@ -66,3 +66,20 @@ There are many things you can do (with more coming soon!)
 ```List<Room> GetRoomsOwnedByCreatorAsync(long AccountId)```
 
 ```List<Room> GetRoomsOwnedByCreatorAsync(string Username)```
+
+## Accounts
+### functions within accounts controller used to get data for accounts (all async!)
+```Account GetAccountAsync(string Username)```
+
+```Account GetAccountAsync(long Id)```
+
+```Bio GetBioAsync(long Id)```
+
+```Bio GetBioAsync(string Username)```
+
+// this one's basically accounts bulk
+```List<Account> GetAccountsAsync(long[] Ids)```
+
+
+## Images
+### functions within images controller used to get data for images (all async!)
