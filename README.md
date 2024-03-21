@@ -84,3 +84,24 @@ There are many things you can do (with more coming soon!)
 
 ## Images
 ### functions within images controller used to get data for images (all async!)
+```List<Image> GetImagesFromPlayerAsync(long PlayerId)```
+
+```List<Image> GetImagesFromPlayerAsync(long PlayerId, int Skip, int Take)```
+
+```List<Image> GetImagesFromPlayerAsync(string Username)```
+
+```List<Image> GetImagesFromPlayerAsync(string Username, int Skip, int Take)```
+
+```List<Image> GetImagesFromRoomAsync(long RoomId)```
+
+```List<Image> GetImagesFromRoomAsync(long RoomId, int Skip, int Take)```
+
+```List<Image> GetImagesFromEventAsync(long EventId)```
+
+```List<Image> GetImagesFromEventAsync(long EventId, int Skip, int Take)```
+
+```List<ImageComment> GetImageCommentsAsync(long ImageId)```
+
+```List<Account> GetImageCheerersAsync(long ImageId)```
+
+```List<long> GetRawImageCheerersAsync(long ImageId)```
