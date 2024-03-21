@@ -4,4 +4,15 @@
 
 Using RecNetSharp is easy!
 
-To use it, you must first be ```cs using RecNetSharp;```
+To use it, you must first be ```using RecNetSharp;```, then create an instance of RecNetClient.
+
+
+example:
+```cs
+
+  async void CreateClient()
+  {
+    RecNetClient Client = new RecNetClient();
+  }
+
+```
