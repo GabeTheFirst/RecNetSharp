@@ -63,4 +63,6 @@ There are many things you can do (with more coming soon!)
 
 ```List<Room> | GetRoomsByCreatorAsync(string Username)```
 
+```List<Room> | GetRoomsOwnedByCreatorAsync(long AccountId)```
+
 ```List<Room> | GetRoomsOwnedByCreatorAsync(string Username)```
