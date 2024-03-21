@@ -59,7 +59,8 @@ here's an example of how they work:
 There are many things you can do (with more coming soon!)
 ## Rooms
 ### functions within rooms controller used to get data for rooms (all async!)
-```List<Room> GetRoomsByCreatorAsync(long AccountId)``` 
+```List<Room> | GetRoomsByCreatorAsync(long AccountId)``` 
 
-```List<Room> GetRoomsByCreatorAsync(string Username)```
+```List<Room> | GetRoomsByCreatorAsync(string Username)```
 
+```List<Room> | GetRoomsOwnedByCreatorAsync(string Username)```
