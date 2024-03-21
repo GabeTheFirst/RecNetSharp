@@ -78,6 +78,7 @@ There are many things you can do (with more coming soon!)
 ```Bio GetBioAsync(string Username)```
 
 // this one's basically accounts bulk
+
 ```List<Account> GetAccountsAsync(long[] Ids)```
 
 
