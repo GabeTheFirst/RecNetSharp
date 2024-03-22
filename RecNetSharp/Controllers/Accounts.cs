@@ -21,30 +21,35 @@ namespace RecNetSharp.Controllers
             Client = C;
         }
 
+        // get an account by username
         public async Task<Account> GetAccountAsync(string Username)
         {
             // get account by username from the rec room api
             return await Client.Get<Account>("accounts/?username=" + Username);
         }
 
+        // get an account by id
         public async Task<Account> GetAccountAsync(long Id)
         {
             // get account by id from the rec room api
             return await Client.Get<Account>("accounts/" + Id);
         }
 
+        // search for accounts by name
         public async Task<List<Account>> SearchAccountsAsync(string Username)
         {
             // searches for accounts from the rec room api
             return await Client.Get<List<Account>>("accounts/search?name=" + Username);
         }
 
+        // get account's bio by id
         public async Task<Bio> GetBioAsync(long Id)
         {
             // get account bio by someone's id
             return await Client.Get<Bio>("accounts/" + Id + "/bio");
         }
 
+        // get account's bio by username
         public async Task<Bio> GetBioAsync(string Username)
         {
             // get the account this username is for
@@ -53,6 +58,7 @@ namespace RecNetSharp.Controllers
             return await GetBioAsync(A.accountId);
         }
 
+        // get accounts bulk
         public async Task<List<Account>> GetAccountsAsync(List<long> Ids)
         {
             // convert the longs into a Query string (such as '?id=1&id=2')
