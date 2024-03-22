@@ -46,7 +46,7 @@ namespace RecNetSharp
             RequestClient.DefaultRequestHeaders.Add("Api-Version", UseVersion.ToString());
 
             // set authorization if provided
-            if(!string.IsNullOrEmpty(AuthKey))
+            if (!string.IsNullOrEmpty(AuthKey))
             {
                 RequestClient.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", AuthKey);
             }
@@ -61,35 +61,55 @@ namespace RecNetSharp
             Rooms = new RoomsController(this);
         }
 
+        // gets data from rec.net as a get request and deserialize it
         public async Task<T> Get<T>(string Route)
         {
+            // Get the string response from the requested route
             string Result = await RequestClient.GetStringAsync(ApiBaseUrl + Route);
+
+            // if there's no result, return a default value
             if (string.IsNullOrEmpty(Result))
             {
+                // return a default value
                 return default(T);
             }
+            // deserialize the response as the requested type and return it
             return JsonSerializer.Deserialize<T>(Result);
         }
 
+        // post data to rec.net with a string as the content
         public async Task<T> Post<T>(string Route, string Content)
         {
+            // gets an HttpResponseMessage variable by posting the data of the string 'Content' as StringContent
             HttpResponseMessage Response = await RequestClient.PostAsync(ApiBaseUrl + Route, new StringContent(Content));
+            // read the content of the response as a string
             string Result = await Response.Content.ReadAsStringAsync();
+
+            // if there's no result, return a default value
             if (string.IsNullOrEmpty(Result))
             {
+                // return a default value
                 return default(T);
             }
+            // deserialize the response as the requested type and return it
             return JsonSerializer.Deserialize<T>(Result);
         }
 
+        // post data to rec.net with a form data as the content
         public async Task<T> Post<T>(string Route, MultipartFormDataContent Content)
         {
+            // gets an HttpResponseMessage variable by posting the data of the form data variable 'Content' 
             HttpResponseMessage Response = await RequestClient.PostAsync(ApiBaseUrl + Route, Content);
+            // read the content of the response as a string
             string Result = await Response.Content.ReadAsStringAsync();
+
+            // if there's no result, return a default value
             if (string.IsNullOrEmpty(Result))
             {
+                // return a default value
                 return default(T);
             }
+            // deserialize the response as the requested type and return it
             return JsonSerializer.Deserialize<T>(Result);
         }
     }
