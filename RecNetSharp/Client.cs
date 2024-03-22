@@ -24,6 +24,9 @@ namespace RecNetSharp
         // the images manager
         public ImagesController Images;
 
+        // the rooms manager
+        public RoomsController Rooms;
+
         // this stores the auth key (might not really be useful) and sets up the HttpClient
         public RecNetClient(string? AuthKey = "", ApiVersion UseVersion = ApiVersion.v1)
         {
@@ -53,12 +56,37 @@ namespace RecNetSharp
 
             // set up images
             Images = new ImagesController(this);
+
+            // set up rooms
+            Rooms = new RoomsController(this);
         }
 
         public async Task<T> Get<T>(string Route)
         {
             string Result = await RequestClient.GetStringAsync(ApiBaseUrl + Route);
-            if (Result == null)
+            if (string.IsNullOrEmpty(Result))
+            {
+                return default(T);
+            }
+            return JsonSerializer.Deserialize<T>(Result);
+        }
+
+        public async Task<T> Post<T>(string Route, string Content)
+        {
+            HttpResponseMessage Response = await RequestClient.PostAsync(ApiBaseUrl + Route, new StringContent(Content));
+            string Result = await Response.Content.ReadAsStringAsync();
+            if (string.IsNullOrEmpty(Result))
+            {
+                return default(T);
+            }
+            return JsonSerializer.Deserialize<T>(Result);
+        }
+
+        public async Task<T> Post<T>(string Route, MultipartFormDataContent Content)
+        {
+            HttpResponseMessage Response = await RequestClient.PostAsync(ApiBaseUrl + Route, Content);
+            string Result = await Response.Content.ReadAsStringAsync();
+            if (string.IsNullOrEmpty(Result))
             {
                 return default(T);
             }

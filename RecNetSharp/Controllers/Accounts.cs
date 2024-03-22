@@ -43,15 +43,13 @@ namespace RecNetSharp.Controllers
             return await Client.Get<Bio>("accounts/" + A.accountId + "/bio");
         }
 
-        // todo: make this POST if there's too many ids
-        public async Task<List<Account>> GetAccountsAsync(long[] Ids)
+        public async Task<List<Account>> GetAccountsAsync(List<long> Ids)
         {
-            string Query = "";
-            foreach (long Id in Ids)
-            {
-                Query += "?id=" + Id;
-            }
-            return await Client.Get<List<Account>>("accounts/bulk" + Query);
+            string Query = RequestTools.CreateQueryArray("id", Ids);
+            if(Query.Length < 2048)
+                return await Client.Get<List<Account>>("accounts/bulk" + Query);
+            else
+                return await Client.Post<List<Account>>("accounts/bulk", Query.Trim('?'));
         }
     }
 }

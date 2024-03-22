@@ -64,7 +64,7 @@ namespace RecNetSharp.Controllers
 
         public async Task<List<Account>> GetImageCheerersAsync(long ImageId)
         {
-            long[] AccountIds = await Client.Get<long[]>("images/" + ImageId + "/cheers");
+            List<long> AccountIds = await Client.Get<List<long>>("images/" + ImageId + "/cheers");
             return await Client.Accounts.GetAccountsAsync(AccountIds);
         }
 
