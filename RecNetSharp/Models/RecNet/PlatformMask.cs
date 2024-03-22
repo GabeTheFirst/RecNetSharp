@@ -1,16 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RecNetSharp.Models.RecNet
+﻿namespace RecNetSharp.Models.RecNet
 {
-    // these are seemingly impossible to get without looking into the game!
-    //
-    // we could probably find by making lots of accounts
+    // thanks to jegarde on discord for having this!
     public enum PlatformMask
     {
-
+        None = 0,
+        Steam = 1,
+        Oculus = 2,
+        PlayStation = 4,
+        Xbox = 8,
+        HeadlessBot = 16,
+        iOS = 32,
+        Android = 64,
+        Standalone = 128,
+        Pico = 256,
+        All = -1
     }
 }
