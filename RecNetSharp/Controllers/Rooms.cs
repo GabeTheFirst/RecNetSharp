@@ -50,5 +50,20 @@ namespace RecNetSharp.Controllers
             // get rooms owned by the creator's id
             return await GetRoomsOwnedByCreatorAsync(A.accountId);
         }
+
+        // search for rooms by name
+        public async Task<List<Room>> SearchRoomsAsync(string Name)
+        {
+            return await Client.Get<List<Room>>("rooms/search?query=" + Name);
+        }
+
+        // get room by name
+        public async Task<Room> GetRoomByNameAsync(string Name)
+        {
+            // if you search rooms starting with "^" then it should return the room with that name
+            List<Room> Result = await SearchRoomsAsync("^" + Name);
+            // find it by name in the results just in case :fire: (could be changed to Result[0])
+            return Result.FirstOrDefault(A => A.Name == Name);
+        }
     }
 }
