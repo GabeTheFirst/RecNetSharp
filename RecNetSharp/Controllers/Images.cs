@@ -97,10 +97,10 @@ namespace RecNetSharp.Controllers
         }
 
         // get an image by id
-        public async Task<Image> GetImageAsync(long ImageId)
+        public async Task<Image?> GetImageAsync(long ImageId)
         {
             // return the result from the request
-            return await Client.Get<Image>("images/" + ImageId);
+            return await Client.Get<Image?>("images/" + ImageId);
         }
 
         // get bulk images by id

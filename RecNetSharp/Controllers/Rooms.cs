@@ -58,7 +58,7 @@ namespace RecNetSharp.Controllers
         }
 
         // get room by name
-        public async Task<Room> GetRoomByNameAsync(string Name)
+        public async Task<Room?> GetRoomByNameAsync(string Name)
         {
             // if you search rooms starting with "^" then it should return the room with that name
             List<Room> Result = await SearchRoomsAsync("^" + Name);

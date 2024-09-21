@@ -22,17 +22,17 @@ namespace RecNetSharp.Controllers
         }
 
         // get an account by username
-        public async Task<Account> GetAccountAsync(string Username)
+        public async Task<Account?> GetAccountAsync(string Username)
         {
             // get account by username from the rec room api
-            return await Client.Get<Account>("accounts/?username=" + Username);
+            return await Client.Get<Account?>("accounts/?username=" + Username);
         }
 
         // get an account by id
-        public async Task<Account> GetAccountAsync(long Id)
+        public async Task<Account?> GetAccountAsync(long Id)
         {
             // get account by id from the rec room api
-            return await Client.Get<Account>("accounts/" + Id);
+            return await Client.Get<Account?>("accounts/" + Id);
         }
 
         // search for accounts by name
@@ -43,14 +43,14 @@ namespace RecNetSharp.Controllers
         }
 
         // get account's bio by id
-        public async Task<Bio> GetBioAsync(long Id)
+        public async Task<Bio?> GetBioAsync(long Id)
         {
             // get account bio by someone's id
-            return await Client.Get<Bio>("accounts/" + Id + "/bio");
+            return await Client.Get<Bio?>("accounts/" + Id + "/bio");
         }
 
         // get account's bio by username
-        public async Task<Bio> GetBioAsync(string Username)
+        public async Task<Bio?> GetBioAsync(string Username)
         {
             // get the account this username is for
             Account A = await GetAccountAsync(Username);
