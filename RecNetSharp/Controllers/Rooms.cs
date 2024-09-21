@@ -65,5 +65,14 @@ namespace RecNetSharp.Controllers
             // find it by name in the results just in case :fire: (could be changed to Result[0])
             return Result.FirstOrDefault(A => A.Name == Name);
         }
+
+        // get room by id
+        public async Task<Room?> GetRoomAsync(long RoomId)
+        {
+            // get the room
+            Room? Result = await Client.Get<Room?>("rooms/" + RoomId);
+            // return the result
+            return Result;
+        }
     }
 }
