@@ -80,5 +80,29 @@ namespace RecNetSharp.Controllers
                 return await Client.Post<List<Account>>("accounts/bulk", Query.Trim('?'));
             }
         }
+
+        // get Progression bulk
+        // possibly move out of accounts, like in devportal
+        public async Task<List<Progression>> GetProgressionsAsync(List<long> Ids)
+        {
+            // convert the longs into a Query string (such as '?id=1&id=2')
+            string Query = RequestTools.CreateQueryArray("id", Ids);
+
+            // check the length to see if it should be post or get
+            if (Query.Length < 2048)
+            {
+                // gets the progressions as a get request, using the Query
+                return await Client.Get<List<Progression>>("players/progression/bulk" + Query);
+            }
+            else
+            {
+                /*
+                   this gets progressions bulk as POST, and trim the ? from the query as content so RecNet doesn't ignore it
+                   form data could be used here (that's what it really is) but it's easier to just send the modified
+                   query string, since it's the same end product
+                */
+                return await Client.Post<List<Progression>>("players/progression/bulk", Query.Trim('?'));
+            }
+        }
     }
 }

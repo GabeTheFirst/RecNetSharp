@@ -1,5 +1,6 @@
 ﻿using RecNetSharp.Models.RecNet;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -93,6 +94,21 @@ namespace RecNetSharp.Controllers
             List<long> AccountIds = await Client.Get<List<long>>("images/" + ImageId + "/cheers");
             // get the accounts of those ids
             return await Client.Accounts.GetAccountsAsync(AccountIds);
+        }
+
+        // get an image by id
+        public async Task<Image> GetImageAsync(long ImageId)
+        {
+            // return the result from the request
+            return await Client.Get<Image>("images/" + ImageId);
+        }
+
+        // get bulk images by id
+        public async Task<List<Image>> GetImagesAsync(List<long> ImageIds)
+        {
+            string FormData = RequestTools.CreateQueryArray("ids", ImageIds);
+            // return the result from the request
+            return await Client.Post<List<Image>>("images/bulk/id", FormData.Trim('?'));
         }
 
         // get the ids of players cheering an image
