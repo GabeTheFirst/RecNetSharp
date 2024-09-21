@@ -104,5 +104,12 @@ namespace RecNetSharp.Controllers
                 return await Client.Post<List<Progression>>("players/progression/bulk", Query.Trim('?'));
             }
         }
+    
+        // get if player is an influencer
+        // also possibly move out of accounts
+        public async Task<bool> IsInfluencer(long AccountId)
+        {
+            return await Client.Get<bool>("influencerpartnerprogram/isinfluencer?id=" + AccountId);
+        }
     }
 }
